@@ -1,0 +1,72 @@
+{% extends "main/base.html" %} {% load static %} {% block extra_css %}
+<style>
+  .profile-card {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .profile-header {
+    background: linear-gradient(135deg, #198754, #28a745);
+    color: #fff;
+    padding: 30px;
+    text-align: center;
+  }
+
+  .profile-body {
+    padding: 30px;
+  }
+
+  .profile-label {
+    font-weight: bold;
+    color: #198754;
+  }
+
+  .whatsapp-btn {
+    background-color: #25d366;
+    border: none;
+  }
+
+  .whatsapp-btn:hover {
+    background-color: #1ebe5d;
+  }
+</style>
+{% endblock %} {% block content %}
+
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow profile-card">
+        <div class="profile-header">
+          <h3>Profil Petani</h3>
+          <p class="mb-0">Identitas Pemilik Usaha Tani</p>
+        </div>
+
+        <div class="profile-body">
+          <p><span class="profile-label">Nama Petani:</span><br />Petani UMKM Pak Jamaludin</p>
+
+          <p>
+            <span class="profile-label">Alamat Lengkap:</span><br />
+            Jl. Raya Gunung Pancar Kp. Blok Dukuh RT 03 RW 12, Desa Karang Tengah, Kecamatan Babakan Madang, Kabupaten Bogor
+          </p>
+
+          <p><span class="profile-label">Nomor WhatsApp:</span><br />0822-6212-5101</p>
+
+          <p><span class="profile-label">Jenis Komoditas:</span><br />Tidak menentu (sesuai musim)</p>
+
+          <hr />
+
+          <p>
+            <span class="profile-label">Riwayat Usaha:</span><br />
+            Dengan latar belakang keluarga petani, Pak Jamaludin melanjutkan usaha tani keluarga dengan fokus padi, sayuran, cabai, timun, serta buah untuk diversifikasi pendapatan.
+          </p>
+
+          <div class="text-center mt-4">
+            <a href="https://wa.me/6282262125101" target="_blank" class="btn whatsapp-btn text-white px-4 py-2"> Hubungi via WhatsApp </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

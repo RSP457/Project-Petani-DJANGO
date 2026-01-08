@@ -1,0 +1,52 @@
+{% extends 'main/base.html' %} {% load static %} {% block content %}
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<section class="page-section">
+  <div class="container">
+    <h2 class="text-center">Lokasi Lahan Petani</h2>
+    <p class="text-center">Peta lokasi lahan pertanian milik Pak Jamaludin</p>
+
+    <!-- MAP -->
+    <div id="map" style="height: 450px; width: 100%; margin-top: 20px; border-radius: 10px"></div>
+  </div>
+</section>
+
+<script>
+  // Koordinat lahan (Gunung Pancar - Bogor)
+  const lat = -6.5756;
+  const lng = 106.9025;
+
+  // Inisialisasi peta
+  const map = L.map("map").setView([lat, lng], 15);
+
+  // Tile OpenStreetMap
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: "© OpenStreetMap contributors",
+  }).addTo(map);
+
+  // Marker lokasi lahan
+  const marker = L.marker([lat, lng]).addTo(map);
+
+  // Popup informasi
+  marker
+    .bindPopup(
+      `
+    <b>Nama Petani:</b> Pak Jamaludin<br><br>
+    <b>Alamat Lahan:</b><br>
+    Jl. Raya Gunung Pancar Kp. Blok Dukuh<br>
+    RT 03 RW 12 Desa Karang Tengah<br>
+    Kec. Babakan Madang Kab. Bogor<br><br>
+    <b>Jenis Tanaman:</b><br>
+    Tidak menentu sesuai musim<br><br>
+    <b>Luas Lahan:</b> 570 m²
+  `
+    )
+    .openPopup();
+</script>
+
+{% endblock %}

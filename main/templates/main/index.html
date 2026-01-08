@@ -1,0 +1,132 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+
+<header class="masthead" style="background-image:url('{% static "agency/assets/img/FotoPetani Head.jpeg" %}')">
+  <div class="container">
+    <div class="masthead-subheading">Petani UMKM Pak Jamaludin</div>
+    <div class="masthead-heading text-uppercase">Hasil Tani Segar & Berkualitas</div>
+    <a class="btn btn-primary btn-xl" href="/produk/">Lihat Produk</a>
+  </div>
+</header>
+
+<section class="page-section">
+  <div class="container text-center">
+    <h2 class="section-heading">Tentang Usaha Tani</h2>
+    <p>
+      Usaha tani milik Pak Jamaludin berfokus pada pertanian padi dan sayuran
+      musiman seperti cabai, timun, serta buah lokal.
+    </p>
+  </div>
+</section>
+
+<!-- ================= PRODUK ================= -->
+<section class="page-section bg-light" id="produk">
+  <div class="container">
+
+    <h2 class="text-center mb-5">Pemasaran Hasil Panen</h2>
+
+    <div class="row">
+      {% for p in produk %}
+      <div class="col-md-4 mb-4">
+        <div class="card product-card shadow h-100">
+
+          <img 
+            src="{{ p.foto.url }}"
+            class="card-img-top product-img"
+            alt="{{ p.nama_produk }}"
+          >
+
+          <div class="card-body">
+            <h5 class="card-title">{{ p.nama_produk }}</h5>
+
+            <p class="mb-1">
+              <strong>Stok:</strong>
+              {{ p.stok|default:"Masih proses tanam" }}
+            </p>
+
+            <p class="mb-3">
+              <strong>Harga:</strong>
+              {% if p.harga %}
+                Rp {{ p.harga }}
+              {% else %}
+                -
+              {% endif %}
+            </p>
+
+            <a 
+              href="https://wa.me/6282262125101?text=Halo%20saya%20ingin%20memesan%20{{ p.nama_produk }}"
+              class="btn btn-success w-100"
+              target="_blank"
+              rel="noopener"
+            >
+              Pesan via WhatsApp
+            </a>
+          </div>
+
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-12">
+        <p class="text-center text-muted">Produk belum tersedia</p>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= PETA ================= -->
+<link rel="stylesheet"
+ href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script
+ src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<section class="page-section" id="peta">
+  <div class="container">
+    <h2 class="text-center mb-4">Lokasi Lahan Petani</h2>
+    <div id="map" style="height:400px; border-radius:10px;"></div>
+  </div>
+</section>
+
+<script>
+  const map = L.map('map').setView([-6.5756, 106.9025], 15);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap'
+  }).addTo(map);
+
+  L.marker([-6.5756, 106.9025]).addTo(map)
+   .bindPopup(`
+    <b>Pak Jamaludin</b><br>
+    Jl. Raya Gunung Pancar<br>
+    Babakan Madang, Bogor<br>
+    Luas Lahan: 570 m²
+   `);
+</script>
+
+<!-- ================= CONTACT ================= -->
+<section class="page-section bg-light" id="contact">
+  <div class="container text-center">
+    <h2>Contact Me</h2>
+    <p>
+      Untuk pemesanan hasil panen atau informasi lebih lanjut,
+      silakan hubungi:
+    </p>
+
+    <p>
+      📞 WhatsApp:
+      <a href="https://wa.me/6282262125101" target="_blank">
+        0822-6212-5101
+      </a>
+    </p>
+
+    <p>
+      📍 Alamat:
+      Jl. Raya Gunung Pancar, Babakan Madang, Bogor
+    </p>
+  </div>
+</section>
+
+
+{% endblock %}
