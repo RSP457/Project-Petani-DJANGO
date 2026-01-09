@@ -8,8 +8,30 @@
   .profile-header {
     background: linear-gradient(135deg, #198754, #28a745);
     color: #fff;
-    padding: 30px;
+    padding: 40px 30px;
     text-align: center;
+  }
+
+  .profile-photo {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #ffffff;
+    margin: 0 auto 15px auto;
+    display: block;
+    background-color: #fff;
+  }
+
+  .profile-name {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+
+  .profile-subtitle {
+    font-size: 0.95rem;
+    opacity: 0.9;
   }
 
   .profile-body {
@@ -31,27 +53,33 @@
   }
 </style>
 {% endblock %} {% block content %}
-
 <div class="container my-5">
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card shadow profile-card">
+        <!-- HEADER -->
         <div class="profile-header">
-          <h3>Profil Petani</h3>
-          <p class="mb-0">Identitas Pemilik Usaha Tani</p>
+          <img src="{% static 'agency/assets/img/icon_petani.png' %}" alt="Foto Petani" class="profile-photo" />
+          <div class="profile-name">Petani UMKM Pak Jamaludin</div>
+          <div class="profile-subtitle">Pemilik Usaha Tani</div>
         </div>
 
+        <!-- BODY -->
         <div class="profile-body">
-          <p><span class="profile-label">Nama Petani:</span><br />Petani UMKM Pak Jamaludin</p>
-
           <p>
             <span class="profile-label">Alamat Lengkap:</span><br />
             Jl. Raya Gunung Pancar Kp. Blok Dukuh RT 03 RW 12, Desa Karang Tengah, Kecamatan Babakan Madang, Kabupaten Bogor
           </p>
 
-          <p><span class="profile-label">Nomor WhatsApp:</span><br />0822-6212-5101</p>
+          <p>
+            <span class="profile-label">Nomor WhatsApp:</span><br />
+            0822-6212-5101
+          </p>
 
-          <p><span class="profile-label">Jenis Komoditas:</span><br />Tidak menentu (sesuai musim)</p>
+          <p>
+            <span class="profile-label">Jenis Komoditas:</span><br />
+            Tidak menentu (sesuai musim)
+          </p>
 
           <hr />
 
@@ -68,5 +96,4 @@
     </div>
   </div>
 </div>
-
 {% endblock %}

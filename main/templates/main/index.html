@@ -9,17 +9,44 @@
     <a class="btn btn-primary btn-xl" href="/produk/">Lihat Produk</a>
   </div>
 </header>
+<section class="about-section py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="about-title">Tentang Usaha Tani</h2>
+      <p class="about-subtitle">
+        Pertanian lokal yang dikelola dengan komitmen, kualitas, dan pemanfaatan teknologi digital
+      </p>
+    </div>
+    <div class="row align-items-center">
+      <!-- Deskripsi -->
+      <div class="col-md-6 mb-4">
+        <p class="about-text">
+          Usaha tani ini merupakan usaha pertanian milik <strong>Pak Jamaludin</strong> yang berfokus
+          pada budidaya tanaman pangan, sayuran, dan buah-buahan lokal seperti
+          <strong>cabai merah, alpukat, dan limus</strong>. Seluruh proses budidaya dilakukan secara
+          mandiri dengan memperhatikan kualitas hasil panen dan kelestarian lingkungan.
+        </p>
+        <p class="about-text">
+          Melalui platform <strong>WebPetani</strong>, usaha tani ini memanfaatkan teknologi digital
+          untuk memperluas pemasaran hasil panen dan memudahkan konsumen dalam memperoleh produk
+          pertanian segar langsung dari petani.
+        </p>
+      </div>
+      <!-- Keunggulan -->
+      <div class="col-md-6">
+        <div class="about-card">
+          <ul class="about-list">
+            <li>🌱 Produk segar langsung dari lahan</li>
+            <li>🌾 Budidaya ramah lingkungan</li>
+            <li>📦 Pemasaran langsung tanpa perantara</li>
+            <li>📱 Pemesanan mudah melalui WhatsApp</li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-<section class="page-section">
-  <div class="container text-center">
-    <h2 class="section-heading">Tentang Usaha Tani</h2>
-    <p>
-      Usaha tani milik Pak Jamaludin berfokus pada pertanian padi dan sayuran
-      musiman seperti cabai, timun, serta buah lokal.
-    </p>
   </div>
 </section>
-
 <!-- ================= PRODUK ================= -->
 <section class="page-section bg-light" id="produk">
   <div class="container">
@@ -106,27 +133,44 @@
 </script>
 
 <!-- ================= CONTACT ================= -->
-<section class="page-section bg-light" id="contact">
-  <div class="container text-center">
-    <h2>Contact Me</h2>
-    <p>
-      Untuk pemesanan hasil panen atau informasi lebih lanjut,
-      silakan hubungi:
-    </p>
+<section class="page-section bg-light py-5" id="contact">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
 
-    <p>
-      📞 WhatsApp:
-      <a href="https://wa.me/6282262125101" target="_blank">
-        0822-6212-5101
-      </a>
-    </p>
-
-    <p>
-      📍 Alamat:
-      Jl. Raya Gunung Pancar, Babakan Madang, Bogor
-    </p>
+        <div class="card shadow-lg border-0 rounded-4 text-center p-4">
+          <div class="mb-3">
+            <div class="rounded-circle bg-success text-white d-inline-flex align-items-center justify-content-center"
+                 style="width:70px; height:70px; font-size:30px;">
+              📞
+            </div>
+          </div>
+          <h2 class="fw-bold mb-2">Contact Me</h2>
+          <p class="text-muted mb-4">
+            Untuk pemesanan hasil panen atau informasi lebih lanjut, silakan hubungi kami melalui kontak di bawah ini.
+          </p>
+          <div class="mb-3">
+            <p class="mb-1 fw-semibold">
+              <i class="bi bi-whatsapp text-success"></i> WhatsApp
+            </p>
+            <a href="https://wa.me/6282262125101"
+               target="_blank"
+               class="btn btn-success px-4 py-2 rounded-pill">
+              0822-6212-5101
+            </a>
+          </div>
+          <hr />
+          <div class="mt-3">
+            <p class="fw-semibold mb-1">
+              <i class="bi bi-geo-alt-fill text-danger"></i> Alamat
+            </p>
+            <p class="text-muted mb-0">
+              Jl. Raya Gunung Pancar, Babakan Madang, Bogor
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
-
-
 {% endblock %}
