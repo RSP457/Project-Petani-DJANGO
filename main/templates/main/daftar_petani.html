@@ -1,0 +1,67 @@
+{% extends "main/base.html" %} {% load static %} {% block extra_css %}
+<style>
+  /* CARD ANIMATION */
+  .petani-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .petani-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .petani-card:active {
+    transform: scale(0.97);
+  }
+
+  .petani-img {
+    height: 220px;
+    object-fit: cover;
+  }
+
+  .petani-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  .petani-desc {
+    font-size: 0.9rem;
+    color: #6c757d;
+  }
+</style>
+{% endblock %} {% block content %}
+<div class="container my-5">
+  <h2 class="text-center mb-4">Daftar Petani</h2>
+
+  <div class="row">
+    {% for petani in petani_list %}
+    <div class="col-md-4 mb-4">
+      <!-- CARD CLICKABLE -->
+      <a href="{% url 'detail_petani' petani.id %}" style="text-decoration: none; color: inherit">
+        <div class="card petani-card h-100">
+          {% if petani.foto %}
+          <img src="{{ petani.foto.url }}" class="card-img-top petani-img" />
+          {% else %}
+          <img src="{% static 'agency/assets/img/icon_petani.png' %}" class="card-img-top petani-img" />
+          {% endif %}
+
+          <div class="card-body">
+            <div class="petani-name">{{ petani.nama }}</div>
+            <div class="petani-desc">{{ petani.deskripsi|truncatewords:12 }}</div>
+          </div>
+
+          <div class="card-footer bg-white border-0">
+            <span class="btn btn-success w-100"> Lihat Profil </span>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% empty %}
+    <p class="text-center text-muted">Belum ada data petani.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

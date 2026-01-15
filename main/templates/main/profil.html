@@ -51,48 +51,103 @@
   .whatsapp-btn:hover {
     background-color: #1ebe5d;
   }
+
+  /* HASIL PANEN */
+  .panen-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 0;
+  }
+
+  .panen-img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
 </style>
 {% endblock %} {% block content %}
 <div class="container my-5">
   <div class="row justify-content-center">
     <div class="col-md-8">
+      {% if petani %}
       <div class="card shadow profile-card">
         <!-- HEADER -->
         <div class="profile-header">
-          <img src="{% static 'agency/assets/img/icon_petani.png' %}" alt="Foto Petani" class="profile-photo" />
-          <div class="profile-name">Petani UMKM Pak Jamaludin</div>
-          <div class="profile-subtitle">Pemilik Usaha Tani</div>
+          {% if petani.foto %}
+          <img src="{{ petani.foto.url }}" class="profile-photo" />
+          {% else %}
+          <img src="{% static 'agency/assets/img/icon_petani.png' %}" class="profile-photo" />
+          {% endif %}
+
+          <div class="profile-name">{{ petani.nama }}</div>
+          <div class="profile-subtitle">{{ petani.deskripsi }}</div>
         </div>
 
         <!-- BODY -->
         <div class="profile-body">
+          {% if petani.detail %}
           <p>
             <span class="profile-label">Alamat Lengkap:</span><br />
-            Jl. Raya Gunung Pancar Kp. Blok Dukuh RT 03 RW 12, Desa Karang Tengah, Kecamatan Babakan Madang, Kabupaten Bogor
+            {{ petani.detail.alamat }}
           </p>
 
           <p>
             <span class="profile-label">Nomor WhatsApp:</span><br />
-            0822-6212-5101
+            {{ petani.detail.whatsapp }}
           </p>
 
           <p>
             <span class="profile-label">Jenis Komoditas:</span><br />
-            Tidak menentu (sesuai musim)
+            {{ petani.detail.komoditas }}
           </p>
 
           <hr />
 
           <p>
             <span class="profile-label">Riwayat Usaha:</span><br />
-            Dengan latar belakang keluarga petani, Pak Jamaludin melanjutkan usaha tani keluarga dengan fokus padi, sayuran, cabai, timun, serta buah untuk diversifikasi pendapatan.
+            {{ petani.detail.riwayat }}
           </p>
+          {% else %}
+          <p class="text-muted">Detail petani belum diisi.</p>
+          {% endif %}
 
-          <div class="text-center mt-4">
-            <a href="https://wa.me/6282262125101" target="_blank" class="btn whatsapp-btn text-white px-4 py-2"> Hubungi via WhatsApp </a>
+          <!-- HASIL PANEN -->
+          <hr />
+          <span class="profile-label">Hasil Panen:</span>
+
+          {% for panen in petani.hasil_panen.all %}
+          <div class="panen-item">
+            {% if panen.foto %}
+            <img src="{{ panen.foto.url }}" class="panen-img" />
+            {% else %}
+            <img src="{% static 'agency/assets/img/no-image.png' %}" class="panen-img" />
+            {% endif %}
+
+            <div>
+              <strong>{{ panen.nama_panen }}</strong><br />
+              {{ panen.jumlah }} Kg {% if panen.keterangan %}
+              <div class="text-muted small">{{ panen.keterangan }}</div>
+              {% endif %}
+            </div>
           </div>
+          {% empty %}
+          <p class="text-muted">Belum ada data hasil panen.</p>
+          {% endfor %}
+
+          <!-- BUTTON WHATSAPP -->
+          {% if petani.detail and petani.detail.whatsapp %}
+          <div class="text-center mt-4">
+            <a href="https://wa.me/62{{ petani.detail.whatsapp|slice:'1:' }}" target="_blank" class="btn whatsapp-btn text-white px-4 py-2"> Hubungi via WhatsApp </a>
+          </div>
+          {% endif %}
         </div>
       </div>
+      {% else %}
+      <p class="text-center text-muted">Belum ada data petani.</p>
+      {% endif %}
     </div>
   </div>
 </div>
